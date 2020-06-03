@@ -272,19 +272,9 @@ public class CachingClusteredClientTest
   }
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Integer> constructorFeeder()
   {
-    return Lists.transform(
-        Lists.newArrayList(new RangeIterable(RANDOMNESS)),
-        new Function<Integer, Object[]>()
-        {
-          @Override
-          public Object[] apply(Integer input)
-          {
-            return new Object[]{input};
-          }
-        }
-    );
+    return new RangeIterable(RANDOMNESS);
   }
 
   @AfterClass

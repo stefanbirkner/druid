@@ -80,8 +80,8 @@ public class SchemalessTestFullTest extends InitializedNullHandlingTest
   public static Collection<?> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[] {TmpFileSegmentWriteOutMediumFactory.instance()},
-        new Object[] {OffHeapMemorySegmentWriteOutMediumFactory.instance()}
+        TmpFileSegmentWriteOutMediumFactory.instance(),
+        OffHeapMemorySegmentWriteOutMediumFactory.instance()
     );
   }
 

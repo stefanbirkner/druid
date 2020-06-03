@@ -66,9 +66,9 @@ public class TimeseriesQueryQueryToolChestTest
   }
 
   @Parameterized.Parameters(name = "descending={0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
-    return QueryRunnerTestHelper.transformToConstructionFeeder(Arrays.asList(false, true));
+    return Arrays.asList(false, true);
   }
 
   private final boolean descending;

@@ -45,11 +45,11 @@ import java.util.Map;
 public class PollingLookupSerDeserTest
 {
   @Parameterized.Parameters
-  public static Collection<Object[]> inputData()
+  public static Collection<Object> inputData()
   {
-    return Arrays.asList(new Object[][]{
-        {new OffHeapPollingCache.OffHeapPollingCacheProvider()}, {new OnHeapPollingCache.OnHeapPollingCacheProvider<>()}
-    });
+    return Arrays.asList(
+        new OffHeapPollingCache.OffHeapPollingCacheProvider(), new OnHeapPollingCache.OnHeapPollingCacheProvider<>()
+    );
   }
 
   private final PollingCacheFactory cacheFactory;

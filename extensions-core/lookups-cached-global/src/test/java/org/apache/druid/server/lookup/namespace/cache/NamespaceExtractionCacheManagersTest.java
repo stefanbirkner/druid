@@ -43,12 +43,12 @@ import java.util.concurrent.TimeUnit;
 public class NamespaceExtractionCacheManagersTest
 {
   @Parameterized.Parameters
-  public static Collection<Object[]> data()
+  public static Collection<Object> data()
   {
-    return Arrays.asList(new Object[][]{
-        {CacheSchedulerTest.CREATE_ON_HEAP_CACHE_MANAGER},
-        {CacheSchedulerTest.CREATE_OFF_HEAP_CACHE_MANAGER}
-    });
+    return Arrays.asList(
+        CacheSchedulerTest.CREATE_ON_HEAP_CACHE_MANAGER,
+        CacheSchedulerTest.CREATE_OFF_HEAP_CACHE_MANAGER
+    );
   }
 
   private final Function<Lifecycle, NamespaceExtractionCacheManager> createCacheManager;

@@ -40,12 +40,12 @@ public class BroadcastDistributionRuleSerdeTest
   private static final ObjectMapper MAPPER = new DefaultObjectMapper();
 
   @Parameterized.Parameters
-  public static List<Object[]> constructorFeeder()
+  public static List<Object> constructorFeeder()
   {
     return Lists.newArrayList(
-        new Object[]{new ForeverBroadcastDistributionRule()},
-        new Object[]{new IntervalBroadcastDistributionRule(Intervals.of("0/1000"))},
-        new Object[]{new PeriodBroadcastDistributionRule(new Period(1000), null)}
+        new ForeverBroadcastDistributionRule(),
+        new IntervalBroadcastDistributionRule(Intervals.of("0/1000")),
+        new PeriodBroadcastDistributionRule(new Period(1000), null)
     );
   }
 

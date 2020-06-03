@@ -39,15 +39,11 @@ public class WrappedRoaringBitmapTest
   }
 
   @Parameterized.Parameters
-  public static List<RoaringBitmapFactory[]> factoryClasses()
+  public static List<RoaringBitmapFactory> factoryClasses()
   {
     return Arrays.asList(
-        new RoaringBitmapFactory[] {
-            new RoaringBitmapFactory(false)
-        },
-        new RoaringBitmapFactory[] {
-            new RoaringBitmapFactory(true)
-        }
+        new RoaringBitmapFactory(false),
+        new RoaringBitmapFactory(true)
     );
   }
 

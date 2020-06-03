@@ -43,8 +43,6 @@ import org.junit.runners.Parameterized;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -71,189 +69,187 @@ public class DeterminePartitionsJobTest
                                    + "expectedNumOfShardsForEachSegment={5}, "
                                    + "expectedStartEndForEachShard={6}, "
                                    + "data={7}")
-  public static Collection<Object[]> constructFeed()
+  public static Object[][] constructFeed()
   {
-    return Arrays.asList(
-        new Object[][]{
-            {
-                // Test partitoning by targetRowsPerSegment
-                true,
-                2,
-                NO_MAX_ROWS_PER_SEGMENT,
-                "2014-10-22T00:00:00Z/P1D",
-                1,
-                new int[]{5},
-                new String[][][]{
-                    {
-                        {null, "c.example.com"},
-                        {"c.example.com", "e.example.com"},
-                        {"e.example.com", "g.example.com"},
-                        {"g.example.com", "i.example.com"},
-                        {"i.example.com", null}
-                    }
-                },
-                ImmutableList.of(
-                    "2014102200,a.example.com,CN,100",
-                    "2014102200,b.example.com,US,50",
-                    "2014102200,c.example.com,US,200",
-                    "2014102200,d.example.com,US,250",
-                    "2014102200,e.example.com,US,123",
-                    "2014102200,f.example.com,US,567",
-                    "2014102200,g.example.com,US,11",
-                    "2014102200,h.example.com,US,251",
-                    "2014102200,i.example.com,US,963",
-                    "2014102200,j.example.com,US,333"
-                )
+    return new Object[][]{
+        {
+            // Test partitoning by targetRowsPerSegment
+            true,
+            2,
+            NO_MAX_ROWS_PER_SEGMENT,
+            "2014-10-22T00:00:00Z/P1D",
+            1,
+            new int[]{5},
+            new String[][][]{
+                {
+                    {null, "c.example.com"},
+                    {"c.example.com", "e.example.com"},
+                    {"e.example.com", "g.example.com"},
+                    {"g.example.com", "i.example.com"},
+                    {"i.example.com", null}
+                }
             },
-            {
-                true,
-                NO_TARGET_ROWS_PER_SEGMENT,
-                2,
-                "2014-10-22T00:00:00Z/P1D",
-                1,
-                new int[]{5},
-                new String[][][]{
-                    {
-                        {null, "c.example.com"},
-                        {"c.example.com", "e.example.com"},
-                        {"e.example.com", "g.example.com"},
-                        {"g.example.com", "i.example.com"},
-                        {"i.example.com", null}
-                    }
-                },
-                ImmutableList.of(
-                    "2014102200,a.example.com,CN,100",
-                    "2014102200,b.example.com,US,50",
-                    "2014102200,c.example.com,US,200",
-                    "2014102200,d.example.com,US,250",
-                    "2014102200,e.example.com,US,123",
-                    "2014102200,f.example.com,US,567",
-                    "2014102200,g.example.com,US,11",
-                    "2014102200,h.example.com,US,251",
-                    "2014102200,i.example.com,US,963",
-                    "2014102200,j.example.com,US,333"
-                )
+            ImmutableList.of(
+                "2014102200,a.example.com,CN,100",
+                "2014102200,b.example.com,US,50",
+                "2014102200,c.example.com,US,200",
+                "2014102200,d.example.com,US,250",
+                "2014102200,e.example.com,US,123",
+                "2014102200,f.example.com,US,567",
+                "2014102200,g.example.com,US,11",
+                "2014102200,h.example.com,US,251",
+                "2014102200,i.example.com,US,963",
+                "2014102200,j.example.com,US,333"
+            )
+        },
+        {
+            true,
+            NO_TARGET_ROWS_PER_SEGMENT,
+            2,
+            "2014-10-22T00:00:00Z/P1D",
+            1,
+            new int[]{5},
+            new String[][][]{
+                {
+                    {null, "c.example.com"},
+                    {"c.example.com", "e.example.com"},
+                    {"e.example.com", "g.example.com"},
+                    {"g.example.com", "i.example.com"},
+                    {"i.example.com", null}
+                }
             },
-            {
-                false,
-                NO_TARGET_ROWS_PER_SEGMENT,
-                2,
-                "2014-10-20T00:00:00Z/P1D",
-                1,
-                new int[]{5},
-                new String[][][]{
-                    {
-                        {null, "c.example.com"},
-                        {"c.example.com", "e.example.com"},
-                        {"e.example.com", "g.example.com"},
-                        {"g.example.com", "i.example.com"},
-                        {"i.example.com", null}
-                    }
-                },
-                ImmutableList.of(
-                    "2014102000,a.example.com,CN,100",
-                    "2014102000,a.example.com,CN,100",
-                    "2014102000,b.example.com,US,50",
-                    "2014102000,b.example.com,US,50",
-                    "2014102000,c.example.com,US,200",
-                    "2014102000,c.example.com,US,200",
-                    "2014102000,d.example.com,US,250",
-                    "2014102000,d.example.com,US,250",
-                    "2014102000,e.example.com,US,123",
-                    "2014102000,e.example.com,US,123",
-                    "2014102000,f.example.com,US,567",
-                    "2014102000,f.example.com,US,567",
-                    "2014102000,g.example.com,US,11",
-                    "2014102000,g.example.com,US,11",
-                    "2014102000,h.example.com,US,251",
-                    "2014102000,h.example.com,US,251",
-                    "2014102000,i.example.com,US,963",
-                    "2014102000,i.example.com,US,963",
-                    "2014102000,j.example.com,US,333",
-                    "2014102000,j.example.com,US,333"
-                )
+            ImmutableList.of(
+                "2014102200,a.example.com,CN,100",
+                "2014102200,b.example.com,US,50",
+                "2014102200,c.example.com,US,200",
+                "2014102200,d.example.com,US,250",
+                "2014102200,e.example.com,US,123",
+                "2014102200,f.example.com,US,567",
+                "2014102200,g.example.com,US,11",
+                "2014102200,h.example.com,US,251",
+                "2014102200,i.example.com,US,963",
+                "2014102200,j.example.com,US,333"
+            )
+        },
+        {
+            false,
+            NO_TARGET_ROWS_PER_SEGMENT,
+            2,
+            "2014-10-20T00:00:00Z/P1D",
+            1,
+            new int[]{5},
+            new String[][][]{
+                {
+                    {null, "c.example.com"},
+                    {"c.example.com", "e.example.com"},
+                    {"e.example.com", "g.example.com"},
+                    {"g.example.com", "i.example.com"},
+                    {"i.example.com", null}
+                }
             },
-            {
-                true,
-                NO_TARGET_ROWS_PER_SEGMENT,
-                5,
-                "2014-10-20T00:00:00Z/P3D",
-                3,
-                new int[]{2, 2, 2},
-                new String[][][]{
-                    {
-                        {null, "f.example.com"},
-                        {"f.example.com", null}
-                    },
-                    {
-                        {null, "f.example.com"},
-                        {"f.example.com", null}
-                    },
-                    {
-                        {null, "f.example.com"},
-                        {"f.example.com", null}
-                    }
+            ImmutableList.of(
+                "2014102000,a.example.com,CN,100",
+                "2014102000,a.example.com,CN,100",
+                "2014102000,b.example.com,US,50",
+                "2014102000,b.example.com,US,50",
+                "2014102000,c.example.com,US,200",
+                "2014102000,c.example.com,US,200",
+                "2014102000,d.example.com,US,250",
+                "2014102000,d.example.com,US,250",
+                "2014102000,e.example.com,US,123",
+                "2014102000,e.example.com,US,123",
+                "2014102000,f.example.com,US,567",
+                "2014102000,f.example.com,US,567",
+                "2014102000,g.example.com,US,11",
+                "2014102000,g.example.com,US,11",
+                "2014102000,h.example.com,US,251",
+                "2014102000,h.example.com,US,251",
+                "2014102000,i.example.com,US,963",
+                "2014102000,i.example.com,US,963",
+                "2014102000,j.example.com,US,333",
+                "2014102000,j.example.com,US,333"
+            )
+        },
+        {
+            true,
+            NO_TARGET_ROWS_PER_SEGMENT,
+            5,
+            "2014-10-20T00:00:00Z/P3D",
+            3,
+            new int[]{2, 2, 2},
+            new String[][][]{
+                {
+                    {null, "f.example.com"},
+                    {"f.example.com", null}
                 },
-                ImmutableList.of(
-                    "2014102000,a.example.com,CN,100",
-                    "2014102000,b.example.com,CN,50",
-                    "2014102000,c.example.com,CN,200",
-                    "2014102000,d.example.com,US,250",
-                    "2014102000,e.example.com,US,123",
-                    "2014102000,f.example.com,US,567",
-                    "2014102000,g.example.com,US,11",
-                    "2014102000,h.example.com,US,251",
-                    "2014102000,i.example.com,US,963",
-                    "2014102000,j.example.com,US,333",
-                    "2014102100,a.example.com,CN,100",
-                    "2014102100,b.example.com,CN,50",
-                    "2014102100,c.example.com,CN,200",
-                    "2014102100,d.example.com,US,250",
-                    "2014102100,e.example.com,US,123",
-                    "2014102100,f.example.com,US,567",
-                    "2014102100,g.example.com,US,11",
-                    "2014102100,h.example.com,US,251",
-                    "2014102100,i.example.com,US,963",
-                    "2014102100,j.example.com,US,333",
-                    "2014102200,a.example.com,CN,100",
-                    "2014102200,b.example.com,CN,50",
-                    "2014102200,c.example.com,CN,200",
-                    "2014102200,d.example.com,US,250",
-                    "2014102200,e.example.com,US,123",
-                    "2014102200,f.example.com,US,567",
-                    "2014102200,g.example.com,US,11",
-                    "2014102200,h.example.com,US,251",
-                    "2014102200,i.example.com,US,963",
-                    "2014102200,j.example.com,US,333"
-                )
+                {
+                    {null, "f.example.com"},
+                    {"f.example.com", null}
+                },
+                {
+                    {null, "f.example.com"},
+                    {"f.example.com", null}
+                }
             },
-            {
-                true,
-                NO_TARGET_ROWS_PER_SEGMENT,
-                1000,
-                "2014-10-22T00:00:00Z/P1D",
-                1,
-                new int[]{1},
-                new String[][][]{
-                    {
-                        {null, null}
-                    }
-                },
-                ImmutableList.of(
-                    "2014102200,a.example.com,CN,100",
-                    "2014102200,b.example.com,US,50",
-                    "2014102200,c.example.com,US,200",
-                    "2014102200,d.example.com,US,250",
-                    "2014102200,e.example.com,US,123",
-                    "2014102200,f.example.com,US,567",
-                    "2014102200,g.example.com,US,11",
-                    "2014102200,h.example.com,US,251",
-                    "2014102200,i.example.com,US,963",
-                    "2014102200,j.example.com,US,333"
-                )
-            }
+            ImmutableList.of(
+                "2014102000,a.example.com,CN,100",
+                "2014102000,b.example.com,CN,50",
+                "2014102000,c.example.com,CN,200",
+                "2014102000,d.example.com,US,250",
+                "2014102000,e.example.com,US,123",
+                "2014102000,f.example.com,US,567",
+                "2014102000,g.example.com,US,11",
+                "2014102000,h.example.com,US,251",
+                "2014102000,i.example.com,US,963",
+                "2014102000,j.example.com,US,333",
+                "2014102100,a.example.com,CN,100",
+                "2014102100,b.example.com,CN,50",
+                "2014102100,c.example.com,CN,200",
+                "2014102100,d.example.com,US,250",
+                "2014102100,e.example.com,US,123",
+                "2014102100,f.example.com,US,567",
+                "2014102100,g.example.com,US,11",
+                "2014102100,h.example.com,US,251",
+                "2014102100,i.example.com,US,963",
+                "2014102100,j.example.com,US,333",
+                "2014102200,a.example.com,CN,100",
+                "2014102200,b.example.com,CN,50",
+                "2014102200,c.example.com,CN,200",
+                "2014102200,d.example.com,US,250",
+                "2014102200,e.example.com,US,123",
+                "2014102200,f.example.com,US,567",
+                "2014102200,g.example.com,US,11",
+                "2014102200,h.example.com,US,251",
+                "2014102200,i.example.com,US,963",
+                "2014102200,j.example.com,US,333"
+            )
+        },
+        {
+            true,
+            NO_TARGET_ROWS_PER_SEGMENT,
+            1000,
+            "2014-10-22T00:00:00Z/P1D",
+            1,
+            new int[]{1},
+            new String[][][]{
+                {
+                    {null, null}
+                }
+            },
+            ImmutableList.of(
+                "2014102200,a.example.com,CN,100",
+                "2014102200,b.example.com,US,50",
+                "2014102200,c.example.com,US,200",
+                "2014102200,d.example.com,US,250",
+                "2014102200,e.example.com,US,123",
+                "2014102200,f.example.com,US,567",
+                "2014102200,g.example.com,US,11",
+                "2014102200,h.example.com,US,251",
+                "2014102200,i.example.com,US,963",
+                "2014102200,j.example.com,US,333"
+            )
         }
-    );
+    };
   }
 
   public DeterminePartitionsJobTest(

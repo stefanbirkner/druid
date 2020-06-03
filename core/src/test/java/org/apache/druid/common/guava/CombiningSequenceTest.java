@@ -53,11 +53,11 @@ import java.util.concurrent.TimeUnit;
 public class CombiningSequenceTest
 {
   @Parameterized.Parameters
-  public static Collection<Object[]> valuesToTry()
+  public static Collection<Object> valuesToTry()
   {
-    return Arrays.asList(new Object[][]{
-        {1}, {2}, {3}, {4}, {5}, {1000}
-    });
+    return Arrays.asList(
+        1, 2, 3, 4, 5, 1000
+    );
   }
 
   private final int yieldEvery;

@@ -39,11 +39,11 @@ public class FlattenSpecParquetInputTest extends BaseParquetInputTest
   static final String TS1 = "2018-09-18T00:18:00.023Z";
 
   @Parameterized.Parameters(name = "type = {0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[]{ParquetExtensionsModule.PARQUET_AVRO_INPUT_PARSER_TYPE},
-        new Object[]{ParquetExtensionsModule.PARQUET_SIMPLE_INPUT_PARSER_TYPE}
+        ParquetExtensionsModule.PARQUET_AVRO_INPUT_PARSER_TYPE,
+        ParquetExtensionsModule.PARQUET_SIMPLE_INPUT_PARSER_TYPE
     );
   }
 

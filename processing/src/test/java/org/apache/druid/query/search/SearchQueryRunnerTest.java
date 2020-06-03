@@ -83,15 +83,13 @@ public class SearchQueryRunnerTest extends InitializedNullHandlingTest
   private static final SearchStrategySelector SELECTOR = new SearchStrategySelector(Suppliers.ofInstance(CONFIG));
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<?> constructorFeeder()
   {
-    return QueryRunnerTestHelper.transformToConstructionFeeder(
-        QueryRunnerTestHelper.makeQueryRunners(
-            new SearchQueryRunnerFactory(
-                SELECTOR,
-                TOOL_CHEST,
-                QueryRunnerTestHelper.NOOP_QUERYWATCHER
-            )
+    return QueryRunnerTestHelper.makeQueryRunners(
+        new SearchQueryRunnerFactory(
+            SELECTOR,
+            TOOL_CHEST,
+            QueryRunnerTestHelper.NOOP_QUERYWATCHER
         )
     );
   }

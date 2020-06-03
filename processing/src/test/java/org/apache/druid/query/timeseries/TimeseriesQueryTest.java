@@ -38,9 +38,9 @@ public class TimeseriesQueryTest
   private static final ObjectMapper JSON_MAPPER = TestHelper.makeJsonMapper();
 
   @Parameterized.Parameters(name = "descending={0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
-    return QueryRunnerTestHelper.cartesian(Arrays.asList(false, true));
+    return Arrays.asList(false, true);
   }
 
   private final boolean descending;

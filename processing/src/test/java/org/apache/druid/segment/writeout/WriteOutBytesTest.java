@@ -39,12 +39,12 @@ import java.util.Collection;
 public class WriteOutBytesTest
 {
   @Parameterized.Parameters
-  public static Collection<Object[]> constructorFeeder() throws IOException
+  public static Collection<Object> constructorFeeder() throws IOException
   {
     return Arrays.asList(
-        new Object[] {new TmpFileSegmentWriteOutMedium(FileUtils.createTempDir())},
-        new Object[] {new OffHeapMemorySegmentWriteOutMedium()},
-        new Object[] {new OnHeapMemorySegmentWriteOutMedium()}
+        new TmpFileSegmentWriteOutMedium(FileUtils.createTempDir()),
+        new OffHeapMemorySegmentWriteOutMedium(),
+        new OnHeapMemorySegmentWriteOutMedium()
     );
   }
 

@@ -53,7 +53,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -167,13 +166,9 @@ public class GroupByQueryRunnerFailureTest
   }
 
   @Parameters(name = "{0}")
-  public static Collection<Object[]> constructorFeeder()
+  public static Collection<?> constructorFeeder()
   {
-    final List<Object[]> args = new ArrayList<>();
-    for (QueryRunner<ResultRow> runner : QueryRunnerTestHelper.makeQueryRunners(FACTORY)) {
-      args.add(new Object[]{runner});
-    }
-    return args;
+    return QueryRunnerTestHelper.makeQueryRunners(FACTORY);
   }
 
   public GroupByQueryRunnerFailureTest(QueryRunner<ResultRow> runner)

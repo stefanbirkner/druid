@@ -35,7 +35,6 @@ import org.junit.runners.Parameterized;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
@@ -61,18 +60,18 @@ public class HyperLogLogSerdeBenchmarkTest extends AbstractBenchmark
   public static Collection<Object[]> getParameters()
   {
     return ImmutableList.of(
-        (Object[]) Arrays.asList(new priorByteBufferSerializer(), new Long(1 << 10)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializer(), new Long(1 << 10)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializerWithPuts(), new Long(1 << 10)).toArray(),
-        (Object[]) Arrays.asList(new priorByteBufferSerializer(), new Long(1 << 8)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializer(), new Long(1 << 8)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializerWithPuts(), new Long(1 << 8)).toArray(),
-        (Object[]) Arrays.asList(new priorByteBufferSerializer(), new Long(1 << 5)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializer(), new Long(1 << 5)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializerWithPuts(), new Long(1 << 5)).toArray(),
-        (Object[]) Arrays.asList(new priorByteBufferSerializer(), new Long(1 << 2)).toArray(),
-        (Object[]) Arrays.asList(new newByteBufferSerializer(), new Long(1 << 2)).toArray(),
-    (Object[]) Arrays.asList(new newByteBufferSerializerWithPuts(), new Long(1 << 2)).toArray()
+        new Object[]{new priorByteBufferSerializer(), new Long(1 << 10)},
+        new Object[]{new newByteBufferSerializer(), new Long(1 << 10)},
+        new Object[]{new newByteBufferSerializerWithPuts(), new Long(1 << 10)},
+        new Object[]{new priorByteBufferSerializer(), new Long(1 << 8)},
+        new Object[]{new newByteBufferSerializer(), new Long(1 << 8)},
+        new Object[]{new newByteBufferSerializerWithPuts(), new Long(1 << 8)},
+        new Object[]{new priorByteBufferSerializer(), new Long(1 << 5)},
+        new Object[]{new newByteBufferSerializer(), new Long(1 << 5)},
+        new Object[]{new newByteBufferSerializerWithPuts(), new Long(1 << 5)},
+        new Object[]{new priorByteBufferSerializer(), new Long(1 << 2)},
+        new Object[]{new newByteBufferSerializer(), new Long(1 << 2)},
+        new Object[]{new newByteBufferSerializerWithPuts(), new Long(1 << 2)}
     );
   }
 

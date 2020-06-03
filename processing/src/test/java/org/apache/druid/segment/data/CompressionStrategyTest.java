@@ -19,8 +19,6 @@
 
 package org.apache.druid.segment.data;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
 import org.apache.druid.java.util.common.io.Closer;
 import org.junit.After;
 import org.junit.Assert;
@@ -33,7 +31,6 @@ import org.junit.runners.Parameterized;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -47,19 +44,9 @@ import java.util.concurrent.TimeUnit;
 public class CompressionStrategyTest
 {
   @Parameterized.Parameters
-  public static Iterable<Object[]> compressionStrategies()
+  public static Object[] compressionStrategies()
   {
-    return Iterables.transform(
-        Arrays.asList(CompressionStrategy.noNoneValues()),
-        new Function<CompressionStrategy, Object[]>()
-        {
-          @Override
-          public Object[] apply(CompressionStrategy compressionStrategy)
-          {
-            return new Object[]{compressionStrategy};
-          }
-        }
-    );
+    return CompressionStrategy.noNoneValues();
   }
 
   protected final CompressionStrategy compressionStrategy;

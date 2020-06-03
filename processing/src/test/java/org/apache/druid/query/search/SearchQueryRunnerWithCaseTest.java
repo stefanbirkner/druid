@@ -55,7 +55,7 @@ import java.util.TreeMap;
 public class SearchQueryRunnerWithCaseTest extends InitializedNullHandlingTest
 {
   @Parameterized.Parameters
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<?> constructorFeeder()
   {
     final SearchQueryConfig[] configs = new SearchQueryConfig[3];
     configs[0] = new SearchQueryConfig();
@@ -108,7 +108,7 @@ public class SearchQueryRunnerWithCaseTest extends InitializedNullHandlingTest
       ));
     }
 
-    return QueryRunnerTestHelper.transformToConstructionFeeder(runners);
+    return runners;
   }
 
   static SearchQueryRunnerFactory makeRunnerFactory(final SearchQueryConfig config)

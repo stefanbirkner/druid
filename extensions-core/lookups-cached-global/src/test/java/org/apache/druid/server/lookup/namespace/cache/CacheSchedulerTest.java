@@ -52,7 +52,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.CancellationException;
@@ -98,9 +97,9 @@ public class CacheSchedulerTest
       };
 
   @Parameterized.Parameters
-  public static Collection<Object[]> data()
+  public static Object[] data()
   {
-    return Arrays.asList(new Object[][]{{CREATE_ON_HEAP_CACHE_MANAGER}});
+    return new Object[]{CREATE_ON_HEAP_CACHE_MANAGER};
   }
 
   public static void waitFor(CacheScheduler.Entry entry) throws InterruptedException

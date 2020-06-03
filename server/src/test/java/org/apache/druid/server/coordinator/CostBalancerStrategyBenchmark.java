@@ -41,17 +41,13 @@ import java.util.concurrent.Executors;
 public class CostBalancerStrategyBenchmark extends AbstractBenchmark
 {
   @Parameterized.Parameters
-  public static List<CostBalancerStrategy[]> factoryClasses()
+  public static List<CostBalancerStrategy> factoryClasses()
   {
     return Arrays.asList(
-        new CostBalancerStrategy[] {
-            new CostBalancerStrategy(MoreExecutors.listeningDecorator(
-                Executors.newFixedThreadPool(1)))
-        },
-        new CostBalancerStrategy[] {
-            new CostBalancerStrategy(MoreExecutors.listeningDecorator(
-                Executors.newFixedThreadPool(4)))
-        }
+        new CostBalancerStrategy(MoreExecutors.listeningDecorator(
+            Executors.newFixedThreadPool(1))),
+        new CostBalancerStrategy(MoreExecutors.listeningDecorator(
+            Executors.newFixedThreadPool(4)))
     );
   }
 

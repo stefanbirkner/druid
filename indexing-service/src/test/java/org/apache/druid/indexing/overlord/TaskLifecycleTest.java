@@ -192,9 +192,9 @@ public class TaskLifecycleTest
   private static final String METADATA_TASK_STORAGE = "MetadataTaskStorage";
 
   @Parameterized.Parameters(name = "taskStorageType={0}")
-  public static Collection<String[]> constructFeed()
+  public static Collection<String> constructFeed()
   {
-    return Arrays.asList(new String[][]{{HEAP_TASK_STORAGE}, {METADATA_TASK_STORAGE}});
+    return Arrays.asList(HEAP_TASK_STORAGE, METADATA_TASK_STORAGE);
   }
 
   public TaskLifecycleTest(String taskStorageType)

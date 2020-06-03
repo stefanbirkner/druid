@@ -51,9 +51,9 @@ import java.util.Map;
 public class VarianceTopNQueryTest extends InitializedNullHandlingTest
 {
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<?> constructorFeeder()
   {
-    return QueryRunnerTestHelper.transformToConstructionFeeder(TopNQueryRunnerTest.queryRunners());
+    return TopNQueryRunnerTest.queryRunners();
   }
 
   private final QueryRunner runner;

@@ -52,9 +52,9 @@ public class PrioritizedExecutorServiceTest
   private final DruidProcessingConfig config;
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
-    return ImmutableList.of(new Object[]{true}, new Object[]{false});
+    return ImmutableList.of(true, false);
   }
 
   public PrioritizedExecutorServiceTest(final boolean useFifo)

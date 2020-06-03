@@ -39,9 +39,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  *
@@ -67,11 +65,7 @@ public class FixedBucketsHistogramAggregationTest extends InitializedNullHandlin
   @Parameterized.Parameters(name = "{0}")
   public static Collection<?> constructorFeeder()
   {
-    final List<Object[]> constructors = new ArrayList<>();
-    for (GroupByQueryConfig config : GroupByQueryRunnerTest.testConfigs()) {
-      constructors.add(new Object[]{config});
-    }
-    return constructors;
+    return GroupByQueryRunnerTest.testConfigs();
   }
 
   @After

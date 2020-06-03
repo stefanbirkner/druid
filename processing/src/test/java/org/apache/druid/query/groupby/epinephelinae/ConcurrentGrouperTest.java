@@ -73,11 +73,11 @@ public class ConcurrentGrouperTest
   private Supplier<ByteBuffer> bufferSupplier;
 
   @Parameters(name = "bufferSize={0}")
-  public static Collection<Object[]> constructorFeeder()
+  public static Collection<Object> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[]{1024 * 32},
-        new Object[]{1024 * 1024}
+        1024 * 32,
+        1024 * 1024
     );
   }
 

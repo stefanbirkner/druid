@@ -88,11 +88,11 @@ public class JdbcExtractionNamespaceTest
 
 
   @Parameterized.Parameters(name = "{0}")
-  public static Collection<Object[]> getParameters()
+  public static Collection<Object> getParameters()
   {
     return ImmutableList.of(
-        new Object[]{"tsColumn"},
-        new Object[]{null}
+        "tsColumn",
+        null
     );
   }
 

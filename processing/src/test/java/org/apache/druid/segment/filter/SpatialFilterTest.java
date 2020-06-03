@@ -64,11 +64,7 @@ import org.junit.runners.Parameterized;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -97,17 +93,9 @@ public class SpatialFilterTest extends InitializedNullHandlingTest
     final QueryableIndex mMappedTestIndex = makeQueryableIndex(indexSpec);
     final QueryableIndex mergedRealtimeIndex = makeMergedQueryableIndex(indexSpec);
     return Arrays.asList(
-        new Object[][]{
-            {
-                new IncrementalIndexSegment(rtIndex, null)
-            },
-            {
-                new QueryableIndexSegment(mMappedTestIndex, null)
-            },
-            {
-                new QueryableIndexSegment(mergedRealtimeIndex, null)
-            }
-        }
+        new IncrementalIndexSegment(rtIndex, null),
+        new QueryableIndexSegment(mMappedTestIndex, null),
+        new QueryableIndexSegment(mergedRealtimeIndex, null)
     );
   }
 

@@ -47,20 +47,16 @@ public class CompactionInputSpecTest
   );
 
   @Parameters
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[]{
-            new CompactionIntervalSpec(
-                INTERVAL,
-                SegmentUtils.hashIds(SEGMENTS)
-            )
-        },
-        new Object[]{
-            new SpecificSegmentsSpec(
-                SEGMENTS.stream().map(segment -> segment.getId().toString()).collect(Collectors.toList())
-            )
-        }
+        new CompactionIntervalSpec(
+            INTERVAL,
+            SegmentUtils.hashIds(SEGMENTS)
+        ),
+        new SpecificSegmentsSpec(
+            SEGMENTS.stream().map(segment -> segment.getId().toString()).collect(Collectors.toList())
+        )
     );
   }
 

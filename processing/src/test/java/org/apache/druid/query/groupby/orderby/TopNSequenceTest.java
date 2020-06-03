@@ -29,8 +29,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -52,9 +50,9 @@ public class TopNSequenceTest
   private int limit;
 
   @Parameterized.Parameters
-  public static Collection<Object[]> makeTestData()
+  public static Object[][] makeTestData()
   {
-    Object[][] data = new Object[][]{
+    return new Object[][]{
         {ASC, RAW_ASC, RAW_ASC.size() - 2},
         {ASC, RAW_ASC, RAW_ASC.size()},
         {ASC, RAW_ASC, RAW_ASC.size() + 2},
@@ -76,8 +74,6 @@ public class TopNSequenceTest
         {DESC, EMPTY, 0},
         {DESC, EMPTY, 1}
     };
-
-    return Arrays.asList(data);
   }
 
   public TopNSequenceTest(Ordering<String> ordering, List<String> rawInput, int limit)

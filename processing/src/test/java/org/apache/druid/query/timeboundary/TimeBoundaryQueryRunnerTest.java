@@ -63,12 +63,10 @@ import java.util.List;
 public class TimeBoundaryQueryRunnerTest
 {
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<?> constructorFeeder()
   {
-    return QueryRunnerTestHelper.transformToConstructionFeeder(
-        QueryRunnerTestHelper.makeQueryRunners(
-            new TimeBoundaryQueryRunnerFactory(QueryRunnerTestHelper.NOOP_QUERYWATCHER)
-        )
+    return QueryRunnerTestHelper.makeQueryRunners(
+        new TimeBoundaryQueryRunnerFactory(QueryRunnerTestHelper.NOOP_QUERYWATCHER)
     );
   }
 

@@ -37,11 +37,11 @@ import java.util.List;
 public class CompatParquetInputTest extends BaseParquetInputTest
 {
   @Parameterized.Parameters(name = "type = {0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[]{ParquetExtensionsModule.PARQUET_AVRO_INPUT_PARSER_TYPE},
-        new Object[]{ParquetExtensionsModule.PARQUET_SIMPLE_INPUT_PARSER_TYPE}
+        ParquetExtensionsModule.PARQUET_AVRO_INPUT_PARSER_TYPE,
+        ParquetExtensionsModule.PARQUET_SIMPLE_INPUT_PARSER_TYPE
     );
   }
 

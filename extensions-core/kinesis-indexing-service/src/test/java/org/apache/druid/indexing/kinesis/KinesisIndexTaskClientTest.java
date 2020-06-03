@@ -93,9 +93,9 @@ public class KinesisIndexTaskClientTest extends EasyMockSupport
   private KinesisIndexTaskClient client;
 
   @Parameterized.Parameters(name = "numThreads = {0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
-    return ImmutableList.of(new Object[]{1}, new Object[]{8});
+    return ImmutableList.of(1, 8);
   }
 
   public KinesisIndexTaskClientTest(int numThreads)

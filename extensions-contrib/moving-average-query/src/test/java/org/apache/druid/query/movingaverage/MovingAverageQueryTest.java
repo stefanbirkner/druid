@@ -29,6 +29,7 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.name.Names;
 import com.google.inject.util.Providers;
+import org.apache.commons.io.IOUtils;
 import org.apache.druid.client.CachingClusteredClient;
 import org.apache.druid.client.DruidServer;
 import org.apache.druid.client.ImmutableDruidServer;
@@ -108,17 +109,12 @@ public class MovingAverageQueryTest extends InitializedNullHandlingTest
   private final TestConfig config;
 
   @Parameters(name = "{0}")
-  public static Iterable<String[]> data() throws IOException
+  public static Iterable<String> data() throws IOException
   {
     BufferedReader testReader = new BufferedReader(
         new InputStreamReader(MovingAverageQueryTest.class.getResourceAsStream("/queryTests"), StandardCharsets.UTF_8));
-    List<String[]> tests = new ArrayList<>();
 
-    for (String line = testReader.readLine(); line != null; line = testReader.readLine()) {
-      tests.add(new String[]{line});
-    }
-
-    return tests;
+    return IOUtils.readLines(testReader);
   }
 
   public MovingAverageQueryTest(String yamlFile) throws IOException

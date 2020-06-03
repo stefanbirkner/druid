@@ -166,9 +166,9 @@ public class KafkaSupervisorTest extends EasyMockSupport
   }
 
   @Parameterized.Parameters(name = "numThreads = {0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
-    return ImmutableList.of(new Object[]{1}, new Object[]{8});
+    return ImmutableList.of(1, 8);
   }
 
   public KafkaSupervisorTest(int numThreads)

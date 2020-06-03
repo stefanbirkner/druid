@@ -64,7 +64,7 @@ public class ApproximateHistogramTopNQueryTest extends InitializedNullHandlingTe
   }
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
     final CloseableStupidPool<ByteBuffer> defaultPool = TestQueryRunners.createDefaultNonBlockingPool();
     final CloseableStupidPool<ByteBuffer> customPool = new CloseableStupidPool<>(
@@ -74,21 +74,19 @@ public class ApproximateHistogramTopNQueryTest extends InitializedNullHandlingTe
     RESOURCE_CLOSER.register(defaultPool);
     RESOURCE_CLOSER.register(customPool);
 
-    return QueryRunnerTestHelper.transformToConstructionFeeder(
-        Iterables.concat(
-            QueryRunnerTestHelper.makeQueryRunners(
-                new TopNQueryRunnerFactory(
-                    defaultPool,
-                    new TopNQueryQueryToolChest(new TopNQueryConfig()),
-                    QueryRunnerTestHelper.NOOP_QUERYWATCHER
-                )
-            ),
-            QueryRunnerTestHelper.makeQueryRunners(
-                new TopNQueryRunnerFactory(
-                    customPool,
-                    new TopNQueryQueryToolChest(new TopNQueryConfig()),
-                    QueryRunnerTestHelper.NOOP_QUERYWATCHER
-                )
+    return Iterables.concat(
+        QueryRunnerTestHelper.makeQueryRunners(
+            new TopNQueryRunnerFactory(
+                defaultPool,
+                new TopNQueryQueryToolChest(new TopNQueryConfig()),
+                QueryRunnerTestHelper.NOOP_QUERYWATCHER
+            )
+        ),
+        QueryRunnerTestHelper.makeQueryRunners(
+            new TopNQueryRunnerFactory(
+                customPool,
+                new TopNQueryQueryToolChest(new TopNQueryConfig()),
+                QueryRunnerTestHelper.NOOP_QUERYWATCHER
             )
         )
     );

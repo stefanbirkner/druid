@@ -40,10 +40,8 @@ public class IndexedIntsTest
   public static Collection<?> constructorFeeder()
   {
     return Arrays.asList(
-        new Object[][]{
-            {VSizeColumnarInts.fromArray(ARRAY)},
-            {new ArrayBasedIndexedInts(ARRAY)}
-        }
+        VSizeColumnarInts.fromArray(ARRAY),
+        new ArrayBasedIndexedInts(ARRAY)
     );
   }
 

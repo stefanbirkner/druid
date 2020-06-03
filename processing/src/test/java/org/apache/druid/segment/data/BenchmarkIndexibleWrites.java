@@ -56,11 +56,11 @@ import java.util.concurrent.atomic.AtomicReference;
 public class BenchmarkIndexibleWrites extends AbstractBenchmark
 {
   @Parameterized.Parameters
-  public static Collection<Object[]> getParameters()
+  public static Collection<Object> getParameters()
   {
     return ImmutableList.of(
-        new Object[]{new ConcurrentStandardMap<Integer>()},
-        new Object[]{new ConcurrentExpandable<Integer>()}
+        new ConcurrentStandardMap<Integer>(),
+        new ConcurrentExpandable<Integer>()
     );
   }
 

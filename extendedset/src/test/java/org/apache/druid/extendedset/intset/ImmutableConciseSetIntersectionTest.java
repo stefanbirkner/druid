@@ -33,9 +33,9 @@ import java.util.List;
 public class ImmutableConciseSetIntersectionTest
 {
   @Parameterized.Parameters
-  public static List<Object[]> parameters()
+  public static List<Object> parameters()
   {
-    return Arrays.asList(new Object[] {false}, new Object[] {true});
+    return Arrays.asList(false, true);
   }
 
   private boolean compact;

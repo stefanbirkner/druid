@@ -19,10 +19,8 @@
 
 package org.apache.druid.query;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.apache.druid.java.util.common.DateTimes;
 import org.apache.druid.java.util.common.Intervals;
@@ -260,11 +258,6 @@ public class QueryRunnerTestHelper
   public static final QuerySegmentSpec EMPTY_INTERVAL = new MultipleIntervalSegmentSpec(
       Collections.singletonList(Intervals.of("2020-04-02T00:00:00.000Z/P1D"))
   );
-
-  public static Iterable<Object[]> transformToConstructionFeeder(Iterable<?> in)
-  {
-    return Iterables.transform(in, (Function<Object, Object[]>) input -> new Object[]{input});
-  }
 
   // simple cartesian iterable
   public static Iterable<Object[]> cartesian(final Iterable... iterables)

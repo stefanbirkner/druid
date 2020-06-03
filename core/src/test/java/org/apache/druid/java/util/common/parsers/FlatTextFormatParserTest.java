@@ -34,7 +34,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -42,12 +41,9 @@ import java.util.stream.Collectors;
 public class FlatTextFormatParserTest extends InitializedNullHandlingTest
 {
   @Parameters(name = "{0}")
-  public static Collection<Object[]> constructorFeeder()
+  public static Object[] constructorFeeder()
   {
-    return ImmutableList.of(
-        new Object[]{FlatTextFormat.CSV},
-        new Object[]{FlatTextFormat.DELIMITED}
-    );
+    return FlatTextFormat.values();
   }
 
   private static final FlatTextFormatParserFactory PARSER_FACTORY = new FlatTextFormatParserFactory();

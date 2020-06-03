@@ -75,7 +75,6 @@ import org.junit.runners.Parameterized;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -101,25 +100,19 @@ public class IncrementalIndexStorageAdapterTest extends InitializedNullHandlingT
   }
 
   @Parameterized.Parameters
-  public static Collection<?> constructorFeeder()
+  public static Object[] constructorFeeder()
   {
-    return Arrays.asList(
-        new Object[][]{
-            {
-                new IndexCreator()
-                {
-                  @Override
-                  public IncrementalIndex createIndex()
-                  {
-                    return new IncrementalIndex.Builder()
+    return new Object[]{
+        new IndexCreator() {
+            @Override
+            public IncrementalIndex createIndex() {
+                return new IncrementalIndex.Builder()
                         .setSimpleTestingIndexSchema(new CountAggregatorFactory("cnt"))
                         .setMaxRowCount(1000)
                         .buildOnheap();
-                  }
-                }
             }
         }
-    );
+    };
   }
 
   @Test

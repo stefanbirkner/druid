@@ -159,12 +159,9 @@ public class KinesisIndexTaskTest extends SeekableStreamIndexTaskTestBase
   private static ServiceEmitter emitter;
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Object[] constructorFeeder()
   {
-    return ImmutableList.of(
-        new Object[]{LockGranularity.TIME_CHUNK},
-        new Object[]{LockGranularity.SEGMENT}
-    );
+    return LockGranularity.values();
   }
 
   private long handoffConditionTimeout = 0;

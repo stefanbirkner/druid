@@ -85,12 +85,9 @@ import java.util.Set;
 public class CompactionTaskParallelRunTest extends AbstractParallelIndexSupervisorTaskTest
 {
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Object[] constructorFeeder()
   {
-    return ImmutableList.of(
-        new Object[]{LockGranularity.TIME_CHUNK},
-        new Object[]{LockGranularity.SEGMENT}
-    );
+    return LockGranularity.values();
   }
 
   private static final String DATA_SOURCE = "test";

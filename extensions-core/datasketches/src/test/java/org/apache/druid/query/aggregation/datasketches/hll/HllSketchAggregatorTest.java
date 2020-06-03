@@ -37,7 +37,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -64,11 +63,7 @@ public class HllSketchAggregatorTest extends InitializedNullHandlingTest
   @Parameterized.Parameters(name = "{0}")
   public static Collection<?> constructorFeeder()
   {
-    final List<Object[]> constructors = new ArrayList<>();
-    for (GroupByQueryConfig config : GroupByQueryRunnerTest.testConfigs()) {
-      constructors.add(new Object[]{config});
-    }
-    return constructors;
+    return GroupByQueryRunnerTest.testConfigs();
   }
 
   @Test

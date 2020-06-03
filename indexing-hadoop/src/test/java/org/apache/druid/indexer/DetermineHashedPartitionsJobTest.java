@@ -45,7 +45,6 @@ import org.junit.runners.Parameterized;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +57,7 @@ public class DetermineHashedPartitionsJobTest
   private int errorMargin;
 
   @Parameterized.Parameters(name = "File={0}, TargetPartitionSize={1}, Interval={2}, ErrorMargin={3}, NumTimeBuckets={4}, NumShards={5}, SegmentGranularity={6}")
-  public static Collection<?> data()
+  public static Object[][] data()
   {
     int[] first = new int[1];
     Arrays.fill(first, 13);
@@ -69,55 +68,53 @@ public class DetermineHashedPartitionsJobTest
     third[2] = 12;
     third[5] = 11;
 
-    return Arrays.asList(
-        new Object[][]{
-            {
-                DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
-                1,
-                "2011-04-10T00:00:00.000Z/2011-04-11T00:00:00.000Z",
-                0,
-                1,
-                first,
-                Granularities.DAY
-            },
-            {
-                DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
-                100,
-                "2011-04-10T00:00:00.000Z/2011-04-16T00:00:00.000Z",
-                0,
-                6,
-                second,
-                Granularities.DAY
-            },
-            {
-                DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
-                1,
-                "2011-04-10T00:00:00.000Z/2011-04-16T00:00:00.000Z",
-                0,
-                6,
-                third,
-                Granularities.DAY
-            },
-            {
-                DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
-                1,
-                null,
-                0,
-                6,
-                third,
-                Granularities.DAY
-            },
-            {
-                DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.rows.in.timezone.tsv").getPath(),
-                1,
-                null,
-                0,
-                1,
-                first,
-                new PeriodGranularity(new Period("P1D"), null, DateTimes.inferTzFromString("America/Los_Angeles"))
-            }
+    return new Object[][]{
+        {
+            DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
+            1,
+            "2011-04-10T00:00:00.000Z/2011-04-11T00:00:00.000Z",
+            0,
+            1,
+            first,
+            Granularities.DAY
+        },
+        {
+            DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
+            100,
+            "2011-04-10T00:00:00.000Z/2011-04-16T00:00:00.000Z",
+            0,
+            6,
+            second,
+            Granularities.DAY
+        },
+        {
+            DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
+            1,
+            "2011-04-10T00:00:00.000Z/2011-04-16T00:00:00.000Z",
+            0,
+            6,
+            third,
+            Granularities.DAY
+        },
+        {
+            DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.duplicate.rows.tsv").getPath(),
+            1,
+            null,
+            0,
+            6,
+            third,
+            Granularities.DAY
+        },
+        {
+            DetermineHashedPartitionsJobTest.class.getResource("/druid.test.data.with.rows.in.timezone.tsv").getPath(),
+            1,
+            null,
+            0,
+            1,
+            first,
+            new PeriodGranularity(new Period("P1D"), null, DateTimes.inferTzFromString("America/Los_Angeles"))
         }
-    );
+    };
   }
 
   public DetermineHashedPartitionsJobTest(

@@ -31,28 +31,28 @@ import org.junit.runners.Parameterized;
 public class MainTest
 {
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Iterable<Object> constructorFeeder()
   {
     return ImmutableList.of(
-        new Object[]{new CliOverlord()},
-        new Object[]{new CliBroker()},
+        new CliOverlord(),
+        new CliBroker(),
 
         // Takes arguments. Cannot be used in this test
-        //new Object[]{new CliPeon()},
+        //new CliPeon(),
 
-        new Object[]{new CliHistorical()},
-        new Object[]{new CliCoordinator()},
+        new CliHistorical(),
+        new CliCoordinator(),
 
         // Implements Runnable, not GuiceRunnable
-        //new Object[]{new CliHadoopIndexer()},
+        //new CliHadoopIndexer(),
 
         // Takes arguments. Cannot be used in this test
-        //new Object[]{new CliInternalHadoopIndexer()},
+        //new CliInternalHadoopIndexer(),
 
-        new Object[]{new CliMiddleManager()},
-        new Object[]{new CliRouter()},
+        new CliMiddleManager(),
+        new CliRouter(),
 
-        new Object[]{new CliIndexer()}
+        new CliIndexer()
     );
   }
 

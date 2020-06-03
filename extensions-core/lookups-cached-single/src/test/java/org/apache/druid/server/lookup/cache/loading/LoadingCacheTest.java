@@ -42,12 +42,12 @@ public class LoadingCacheTest
   private static final ImmutableMap IMMUTABLE_MAP = ImmutableMap.of("key", "value");
 
   @Parameterized.Parameters
-  public static Collection<Object[]> inputData()
+  public static Collection<?> inputData()
   {
-    return Arrays.asList(new Object[][]{
-        {new OnHeapLoadingCache<>(4, 1000, null, null, null)},
-        {new OffHeapLoadingCache(0, 0L, 0L, 0L)}
-    });
+    return Arrays.asList(
+        new OnHeapLoadingCache<>(4, 1000, null, null, null),
+        new OffHeapLoadingCache(0, 0L, 0L, 0L)
+    );
   }
 
   private final LoadingCache loadingCache;

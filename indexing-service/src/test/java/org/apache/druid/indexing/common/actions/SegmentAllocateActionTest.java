@@ -81,12 +81,9 @@ public class SegmentAllocateActionTest
   private final LockGranularity lockGranularity;
 
   @Parameterized.Parameters(name = "{0}")
-  public static Iterable<Object[]> constructorFeeder()
+  public static Object[] constructorFeeder()
   {
-    return ImmutableList.of(
-        new Object[]{LockGranularity.SEGMENT},
-        new Object[]{LockGranularity.TIME_CHUNK}
-    );
+    return LockGranularity.values();
   }
 
   public SegmentAllocateActionTest(LockGranularity lockGranularity)
